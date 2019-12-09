@@ -6,6 +6,20 @@ ZXCLOUD R5300 G4 is ZTE’s new generation 2U 2-socket rack server, supporting l
 
 R5300 G4 has been verified by Intel as an Intel® Select Solution for NFVI Solution.
 
+To run the ansible-playbook use the following command:
+```
+$ ansible-playbook -i inventory-isac-test -v playbook-isacadm.yml
+```
+
+Before lunching the above command, check the following files:
+```
+	- inventory-isac-X 	: which is including all the iSAC interfaces IPs for the physical hosts
+	
+	- playbook-isacadm.yml 	: which is including all the links to the roles or environment parameters
+```
+
+
+
 ## Project Structure
 
 ```
