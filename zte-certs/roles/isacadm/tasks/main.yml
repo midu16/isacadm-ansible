@@ -1,2 +1,29 @@
 ---
 # tasks file for isacadm
+#
+- name: Debug the isac_address
+  debug:
+    var: isac_address
+
+- name: Create the backup directory
+  file:
+    path: /conf/backup
+    state: directory
+
+- name: Back-up the previous server.pem
+  copy:
+    src: /conf/server.pem
+    dest: /conf/backup/server.pem.backup
+    owner: sysadmin
+    group: sysadmin
+    mode: '0644'
+
+- name: Update the certificate
+  copy:
+    src: "{{ role_path }}"/files/server.pem
+    dest: /conf/server.pem
+    owner: sysadmin
+    group: sysadmin
+    mode: '0644'
+
+

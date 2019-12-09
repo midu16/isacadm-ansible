@@ -1,0 +1,4 @@
+---
+
+isac_user: "superuser"
+isac_password: "{{ vault_isac_password }}"
