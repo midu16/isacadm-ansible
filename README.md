@@ -21,6 +21,7 @@ R5300 G4 has been verified by Intel as an Intel® Select Solution for NFVI Solut
             ├── defaults
             │   └── main.yml
             ├── files
+            │   └── server.pem
             ├── handlers
             │   └── main.yml
             ├── meta
@@ -33,9 +34,11 @@ R5300 G4 has been verified by Intel as an Intel® Select Solution for NFVI Solut
             │   ├── inventory
             │   └── test.yml
             └── vars
-                └── main.yml
+                ├── global.yml
+                ├── main.yml
+                └── vault
 
-11 directories, 13 files
+11 directories, 16 files
 
 ```
 
