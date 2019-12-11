@@ -1,4 +1,4 @@
 ---
 
-isac_user: "superuser"
+isac_user: "sysadmin"
 isac_password: "{{ vault_isac_password }}"

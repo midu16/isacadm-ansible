@@ -5,30 +5,45 @@
   debug:
     var: isac_address
 
+#- name: Create the backup directory
+#  file:
+#    path: /conf/backup
+#    state: directory
+#  args:
+#    executable: shell
 - name: Create the backup directory
-  file:
-    path: /conf/backup
-    state: directory
+  raw: mkdir /conf/backup
+  ignore_errors: yes
 
 - name: Back-up the previous server.pem
-  copy:
-    src: /conf/server.pem
-    dest: /conf/backup/server.pem.backup
-    owner: sysadmin
-    group: sysadmin
-    mode: '0644'
+  raw: mv /conf/server.pem /conf/backup/server.pem.backup
+  ignore_errors: yes
+
+#  copy:
+#    src: /conf/server.pem
+#    dest: /conf/backup/server.pem.backup
+#    owner: sysadmin
+#    group: sysadmin
+#    mode: '0644'
+#  args:
+#    executable: shell
 
 - name: Update the certificate
-  copy:
-    src: "{{ role_path }}"/files/server.pem
-    dest: /conf/server.pem
-    owner: sysadmin
-    group: sysadmin
-    mode: '0644'
-
+  raw: |
+     cat >  /conf/server.pem <<EOF
+     {{ cert  }}
+     EOF
+  
+#  copy:
+#    src: "{{ role_path }}/files/server.pem"
+#    dest: /conf/server.pem
+#    owner: sysadmin
+#    group: sysadmin
+#    mode: '0644'
+#    args:
+#      executable: shell
+        
 - name: Restart the httpd service 
-  shell: /etc/init.d/lighttpd.sh restart
-  args:
-    executable: /bin/bash
+  raw: /etc/init.d/lighttpd.sh restart
 
 
